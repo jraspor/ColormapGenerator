@@ -1,0 +1,7 @@
+project(ColorMapGenerator)
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_STANDARD 11)
+aux_source_directory(. SRC_LIST)
+add_executable(${PROJECT_NAME} ${SRC_LIST})
+add_library(ColorMapLib STATIC src/ColorSpace.cpp src/ColorSpace.h src/Conversion.cpp src/Conversion.h src/Comparison.cpp src/Comparison.h src/Utils.h ColormapToImage.cpp ColormapToImage.h Interpolation.cpp Interpolation.h)
+target_link_libraries(${PROJECT_NAME} ColorMapLib)
