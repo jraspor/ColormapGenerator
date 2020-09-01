@@ -7,29 +7,6 @@
 
 using namespace std;
 
-//Interpolacija:
-double interpolate(vector<double> &LData, vector<double> &bData, double x)
-{
-   int size = LData.size();
-
-   int i = 0;
-   if (x >= LData[size - 2]){
-      i = size - 2;
-   } else{
-      while (x > LData[i+1]) i++;
-   }
-
-   double xL = LData[i], yL = bData[i], xR = LData[i+1], yR = bData[i+1];
-
-   if (x < xL) yR = yL;
-   if (x > xR) yL = yR;
-
-
-   double dydx = (yR - yL) / (xR - xL);
-
-   return yL + dydx * (x - xL);
-}
-
 int main(int argc,char * argv[])
 {
    //Divergentna color mapa
@@ -64,9 +41,11 @@ int main(int argc,char * argv[])
    for (int i = 10; i <= numPoints; i++) LVals.push_back((double)i);
 
    // Interpoliranje
+   Interpolation inter;
+
    for (double x : LVals)
    {
-      double y = interpolate(LData, bData, x);
+      double y = inter.interpolate(LData, bData, x);
       bVals.push_back( y );
    }
 

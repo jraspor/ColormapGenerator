@@ -8,7 +8,7 @@ class Interpolation {
 public:
     Interpolation();
     ~Interpolation();
-    double interpolate();
+    double interpolate(std::vector<double> &LData, std::vector<double> &bData, double x);
 };
 
 #endif
